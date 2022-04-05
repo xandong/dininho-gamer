@@ -1,125 +1,190 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+}
+
+/* GERAIS */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
-  overflow: hidden;
+  font-family: "Rubik";
+  background: whitesmoke;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font: normal 1.5em monospace;
-  color: #ff0000;
+  justify-content: space-between;
 }
 
-main {
-  position: relative;
-  width: 100%;
-  height: 350px;
-
-  background: url("../img/bg1.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat-x;
-  /* animation: sliderBackground 2000s infinite linear; */
-
-  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.2);
+.flex-center {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-nav {
-  position: absolute;
-  top: 8px;
-  margin: 8px 0 4px;
-  padding: 0 48px;
-  width: 100%;
+/*  */
+header {
+  width: 100vw;
+  height: fit-content;
+
+  position: relative;
+  cursor: default;
+}
+h1 {
+  font-size: 3em;
+  padding: 36px;
+}
+main {
+  width: 100vw;
+  height: fit-content;
+
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+.header {
+  width: 100vw;
+  height: fit-content;
+
+  flex-direction: column;
+}
+#rules {
+  padding: 8px;
+  min-width: 100px;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  background: #eee;
+  color: #3a026a;
+  border: 8px solid #dde;
+  border-radius: 24px;
+}
+#rules p code {
+  padding: 4px 8px;
+  margin-right: 4px;
+  text-transform: uppercase;
+  background: #ddd;
+  border-radius: 8px;
+}
+#rank {
+  min-width: 100px;
+  width: fit-content;
+  min-height: 100px;
+  height: fit-content;
+  flex-direction: column;
+
+  padding: 8px;
+  background: #eee;
+  color: #3a026a;
+  border: 8px solid #dde;
+  border-radius: 24px;
+}
+#rank table {
+  padding: 16px;
+  text-align: left;
+  display: flex;
+}
+#rank td {
+  padding: 6px;
+}
+#rank tr {
+  margin-bottom: 24px;
+}
+#info {
+  width: 100%;
+  padding: 24px;
   justify-content: space-between;
   align-items: center;
-}
-#life {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+  position: absolute;
+  color: tomato;
 }
 .heart {
-  background: url("../img/heart-pixel.png");
-  background-size: cover;
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
 }
-#distance {
-  min-width: fit-content;
-  padding: 0px 8px;
-  background-color: #ff0000;
-  color: whitesmoke;
-  border: 2px solid black;
-  border-radius: 8px;
-
-  text-align: center;
+#points {
+  font-size: 1.5em;
+  font-weight: 600;
+  text-shadow: 1.5px 1.5px white;
 }
-
-#title {
-  background-color: rgba(240, 248, 255, 0.3);
-  padding: 0 8px;
-  border-radius: 24px;
-  letter-spacing: -1px;
-}
-
-.dino {
-  position: absolute;
-  left: 80px;
-  bottom: 20px;
-  width: 70px;
-  height: 70px;
-  background-image: url(../img/dino0-red.png);
+#game {
+  overflow: hidden;
+  width: 1200px;
+  height: 400px;
+  background: url(../img/bg1.png);
   background-position: center;
   background-size: cover;
-  filter: drop-shadow(0 0 0.1px black);
+  border-radius: 24px;
+  animation: sliderBackground infinite linear;
+
+  position: relative;
+  cursor: crosshair;
 }
 #cactus {
   width: 100vw;
-  height: max-content;
+  height: 100px;
+
   position: absolute;
   bottom: 0;
 }
-.cactus {
-  background: url("../img/cacto0.png");
+.cacto {
+  width: 80px;
+  height: 100px;
+  background: url(../img/cacto0.png);
+  background-position: center;
+  background-size: cover;
+
   position: absolute;
   bottom: 20px;
-  width: 77px;
-  height: 100px;
-  background-size: cover;
-  background-position: center;
 }
+#dino {
+  width: 80px;
+  height: 80px;
 
-#path {
+  background: url(../img/dino0-red.png);
+  background-position: center;
+  background-size: cover;
+  filter: drop-shadow(0 0 0.1px black);
+
+  position: absolute;
+  left: 80px;
+  bottom: 20px;
+}
+#bottom {
   width: 100%;
   height: 20px;
-  position: absolute;
-  bottom: 0;
-
-  background-image: url(../img/chao.png);
+  background: url(../img/chao.png);
   background-position: center;
   background-size: cover;
-  background-repeat: repeat-x;
-  /* animation: sliderBackground 400s infinite linear; */
+  animation: sliderBackground infinite linear;
+  position: absolute;
+  bottom: 0;
+}
+
+footer {
+  width: 100vw;
+  padding: 24px;
+  font-weight: 600;
 }
 
 @keyframes sliderBackground {
   from {
-    background-position: 0;
+    background-position: 600;
   }
   to {
-    background-position: 70000%;
+    background-position: -600px;
   }
 }

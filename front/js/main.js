@@ -1,3 +1,5 @@
+import insereRank from "./api";
+
 const points = document.querySelector("#points");
 const title = document.querySelector("#title");
 const background = document.querySelector("#game");
@@ -43,9 +45,9 @@ function moveDino() {
     } else {
       if (stateGame == true && isEndGame == false) {
         if (leftRigth) {
-          dino.style.background = "url(../../img/dino1-red.png)";
+          dino.style.background = "url(../img/dino1-red.png)";
         } else {
-          dino.style.background = "url(../../img/dino2-red.png)";
+          dino.style.background = "url(../img/dino2-red.png)";
         }
         leftRigth = !leftRigth;
       }
@@ -91,7 +93,7 @@ function createCactus() {
     }
   } else {
     cacto.classList.add("cacto");
-    cacto.style.background = `url(../../img/cacto${randomCactus()}.png)`;
+    cacto.style.background = `url(../img/cacto${randomCactus()}.png)`;
     cacto.style.left = cactoPosition + "px";
     coverCenter(cacto);
     cactus.appendChild(cacto);
@@ -138,9 +140,9 @@ function alterMode() {
     } else {
       if (distance % 500 == 0 && distance != 0) {
         if (mode) {
-          background.style.background = "url(../../img/bg1-night.png)";
+          background.style.background = "url(../img/bg1-night.png)";
         } else {
-          background.style.background = "url(../../img/bg1.png)";
+          background.style.background = "url(../img/bg1.png)";
         }
         coverCenter(background);
         mode = !mode;
@@ -161,7 +163,7 @@ function reset() {
   points.innerHTML = "POINTS";
   const heart = document.createElement("img");
   heart.classList.add("heart");
-  heart.src = "../../img/heart-pixel.png";
+  heart.src = "../img/heart-pixel.png";
   hearts.appendChild(heart);
   console.log("Jogo resetado");
 }
@@ -174,13 +176,8 @@ function endGame() {
   background.style.animationDuration = "0s";
   bottom.style.animationDuration = "0s";
   title.innerHTML = "Precione enter/espaço para resetar!";
-  dino.style.background = "url(../../img/dino0-red.png)";
+  dino.style.background = "url(../img/dino0-red.png)";
   coverCenter(dino);
-}
-
-function insereRank(nick, score) {
-  console.log(nick, score);
-  console.log("posição inserida no rank");
 }
 
 function keyUp() {
