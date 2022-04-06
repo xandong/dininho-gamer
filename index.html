@@ -9,9 +9,10 @@
       content="Jogo do dinossauro 2.0 inspirado na versão do google"
     />
     <title>Jogo do Dinossauro - Dino Game</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/mode.css" />
-    <link rel="shortcut icon" href="img/dino0.png" type="image/x-icon" />
+    <link rel="stylesheet" href="front/css/style.css" />
+    <link rel="stylesheet" href="front/css/mode.css" />
+    <link rel="shortcut icon" href="front/img/dino0.png" type="image/x-icon" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <header class="flex-center">
@@ -29,7 +30,7 @@
         <button id="btn-mobile" class="btn">start</button>
         <div id="info" class="flex-center">
           <div id="life">
-            <img src="img/heart-pixel.png" alt="heart" class="heart" />
+            <img src="front/img/heart-pixel.png" alt="heart" class="heart" />
           </div>
           <div id="points">POINTS</div>
         </div>
@@ -39,28 +40,7 @@
       </section>
       <section id="rank" class="flex-center">
         <h3>TOP 10 - BEST SCORES</h3>
-        <table>
-          <tr>
-            <th></th>
-            <th>Nome</th>
-            <th>Pontos</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Alexandre</td>
-            <td>200</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Gurgel</td>
-            <td>2220</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Figueiredo</td>
-            <td>2220</td>
-          </tr>
-        </table>
+       <div id="container"></div>
       </section>
     </main>
     <footer class="flex-center">
@@ -75,7 +55,7 @@
         >.
       </p>
     </footer>
-    <script src="js/main.js" type="module"></script>
-    <script src="js/mode.js"></script>
+    <script src="front/js/main.js" type="module"></script>
+    <script src="front/js/mode.js"></script>
   </body>
 </html>

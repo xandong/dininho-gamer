@@ -156,7 +156,11 @@ function reset() {
     "Deixe sua pontuação registrada no ranking! Qual seu nickname?"
   );
   if (nickname != null) {
-    // insereRank(nickname, distance);
+    const resultGame = {
+      Name: nickname,
+      Score: distance
+    }
+    insereRank(resultGame);
     console.log(`${nickname} fez ${distance} pontos!`);
   }
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
@@ -168,6 +172,22 @@ function reset() {
   heart.src = "img/heart-pixel.png";
   hearts.appendChild(heart);
   console.log("Jogo resetado");
+}
+
+function insereRank(resultGame){
+  alert(resultGame);
+  axios.post('https://localhost:44339/api/Game', {
+    Name: resultGame.Name,
+    Score: resultGame.Score
+  })
+  .then(function (response) {
+    console.log(response);
+    //alert("Informações inseridas")
+  })
+  .catch(function (error) {
+    console.log(error);
+    //se deu algum erro na hora de ir inserir.
+  });
 }
 
 function endGame() {
@@ -182,7 +202,7 @@ function endGame() {
   dino.style.background = "url(../img/dino0.png)";
   coverCenter(dino);
 }
-
+getPlayers();
 function keyUp() {
   let code = event.keyCode;
   let codeStr = String.fromCharCode(code);
@@ -192,6 +212,7 @@ function keyUp() {
     countPoints();
     moveDino();
     createCactus();
+   
     title.innerHTML = "RUN DINO, RUN...";
     background.style.animationDuration = "10s";
     bottom.style.animationDuration = "4.8s";
@@ -210,6 +231,46 @@ function keyUp() {
     }
   }
 }
+
+function getPlayers(){
+
+  axios.get('https://localhost:44339/api/Game')
+ .then(response => {
+   const players = response.data ;
+   console.log(players);
+   setUpTable(players)
+ }) 
+}
+
+//monta a tabela dinamicamente
+function setUpTable(players){
+  var container = document.getElementById("container");
+  container.innerHTML = [
+    '<table>',
+    
+    '<tr>',
+            '<th></th>',
+            '<th>Nome</th>',
+            '<th>Pontos</th>',
+          '</tr>',
+          '<tr id="corpo">',
+           
+          '</tr>'
+   // '<tbody id="corpo">',
+    
+  ]
+  var html = "";
+  for (var i = 0; i < players.length; i++){
+    html +=
+            "<td>"+ (i+1) + "</td>"+
+            "<td>"+ players[i].name + "</td>"+
+            "<td>"+ players[i].score + "</td>"
+            
+}
+document.getElementById("corpo").innerHTML = html;
+}
+
+
 
 document.addEventListener("keypress", keyUp, false);
 btnMobile.addEventListener("click", keyUp, false);
