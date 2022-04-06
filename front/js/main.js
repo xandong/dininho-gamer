@@ -1,5 +1,3 @@
-import insereRank from "./api";
-
 const points = document.querySelector("#points");
 const title = document.querySelector("#title");
 const background = document.querySelector("#game");
@@ -7,6 +5,7 @@ const cactus = document.querySelector("#cactus");
 const dino = document.querySelector("#dino");
 const bottom = document.querySelector("#bottom");
 const hearts = document.querySelector("#life");
+const btnMobile = document.querySelector("#btn-mobile");
 
 let stateGame = false,
   isEndGame = false,
@@ -45,13 +44,13 @@ function moveDino() {
     } else {
       if (stateGame == true && isEndGame == false) {
         if (leftRigth) {
-          dino.style.background = "url(../img/dino1-red.png)";
+          dino.style.background = `url(../img/dino1.png)`;
         } else {
-          dino.style.background = "url(../img/dino2-red.png)";
+          dino.style.background = `url(../img/dino2.png)`;
         }
         leftRigth = !leftRigth;
+        coverCenter(dino);
       }
-      coverCenter(dino);
     }
   }, 200);
 }
@@ -85,7 +84,7 @@ function createCactus() {
   const cacto = document.createElement("div");
   let cactoPosition = 1200,
     timeRandomCreateCacto = parseInt(Math.random() * 3000);
-  timeRandomCreateCacto < 750 ? (timeRandomCreateCacto = 750) : null;
+  timeRandomCreateCacto < 800 ? (timeRandomCreateCacto = 800) : null;
   if (isEndGame) {
     while (cactus.hasChildNodes()) {
       cactus.removeChild(cacto);
@@ -129,8 +128,9 @@ function moveCacto(cacto, cactoPosition) {
 function removeHeart() {
   if (hearts.firstElementChild == null) {
     endGame();
+  } else {
+    hearts.removeChild(hearts.firstElementChild);
   }
-  hearts.removeChild(hearts.firstElementChild);
 }
 
 function alterMode() {
@@ -156,14 +156,16 @@ function reset() {
     "Deixe sua pontuação registrada no ranking! Qual seu nickname?"
   );
   if (nickname != null) {
-    insereRank(nickname, distance);
+    // insereRank(nickname, distance);
+    console.log(`${nickname} fez ${distance} pontos!`);
   }
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
   title.innerHTML = "Precione enter/espaço para começar!";
   points.innerHTML = "POINTS";
+  btnMobile.innerHTML = "start";
   const heart = document.createElement("img");
   heart.classList.add("heart");
-  heart.src = "../img/heart-pixel.png";
+  heart.src = "img/heart-pixel.png";
   hearts.appendChild(heart);
   console.log("Jogo resetado");
 }
@@ -176,7 +178,8 @@ function endGame() {
   background.style.animationDuration = "0s";
   bottom.style.animationDuration = "0s";
   title.innerHTML = "Precione enter/espaço para resetar!";
-  dino.style.background = "url(../img/dino0-red.png)";
+  btnMobile.innerHTML = "reset";
+  dino.style.background = "url(../img/dino0.png)";
   coverCenter(dino);
 }
 
@@ -184,7 +187,6 @@ function keyUp() {
   let code = event.keyCode;
   let codeStr = String.fromCharCode(code);
   // console.log("Code: " + event.keyCode + "; Tecla: " + codeStr);
-
   if (!stateGame) {
     alterStateGame();
     countPoints();
@@ -192,13 +194,14 @@ function keyUp() {
     createCactus();
     title.innerHTML = "RUN DINO, RUN...";
     background.style.animationDuration = "10s";
-    bottom.style.animationDuration = "2s";
+    bottom.style.animationDuration = "4.8s";
+    btnMobile.innerHTML = "jump";
   } else {
-    if (code === 32 || code === 13) {
+    if (code === 32 || code === 13 || event.target.id == "btn-mobile") {
       if (isEndGame) {
         reset();
       } else {
-        if (position == 20) {
+        if (position == 20 || event.target.id == "btn-mobile") {
           jump();
         }
       }
@@ -209,3 +212,4 @@ function keyUp() {
 }
 
 document.addEventListener("keypress", keyUp, false);
+btnMobile.addEventListener("click", keyUp, false);
