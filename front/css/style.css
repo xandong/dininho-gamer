@@ -37,8 +37,8 @@ header {
   cursor: default;
 }
 h1 {
-  font-size: 3em;
-  padding: 36px;
+  font-size: 2em;
+  padding: 24px;
 }
 main {
   width: 100vw;
@@ -57,26 +57,28 @@ main {
   flex-direction: column;
 }
 #rules {
+  margin: 4px;
   padding: 8px;
   min-width: 100px;
   width: fit-content;
   height: fit-content;
   flex-direction: column;
   align-items: start;
-  gap: 16px;
+  gap: 4px;
   background: #eee;
   color: #3a026a;
-  border: 8px solid #dde;
+  border: 8px solid rgba(221, 221, 238, 0.411);
   border-radius: 24px;
 }
-#rules p code {
+#rules code {
   padding: 4px 8px;
-  margin-right: 4px;
+  margin-top: 16px;
   text-transform: uppercase;
   background: #ddd;
   border-radius: 8px;
 }
 #rank {
+  margin: 4px;
   min-width: 100px;
   width: fit-content;
   min-height: 100px;
