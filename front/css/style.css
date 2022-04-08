@@ -94,7 +94,7 @@ main {
 #rank table {
   padding: 16px;
   text-align: left;
-  display: flex;
+  /*display: flex;*/
 }
 #rank td {
   padding: 6px;

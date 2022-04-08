@@ -245,29 +245,39 @@ function getPlayers(){
 //monta a tabela dinamicamente
 function setUpTable(players){
   var container = document.getElementById("container");
-  container.innerHTML = [
-    '<table>',
-    
-    '<tr>',
-            '<th></th>',
-            '<th>Nome</th>',
-            '<th>Pontos</th>',
-          '</tr>',
-          '<tr id="corpo">',
-           
-          '</tr>'
-   // '<tbody id="corpo">',
-    
-  ]
+  
+  container.innerHTML = `
+  <table>
+  <thead>
+      <tr>
+  <th></th>
+  <th>Nome</th>
+  <th>Pontos</th>
+  </tr>
+    </thead>
+  <tbody id="corpo">
+  
+  </tbody>
+  </table>
+  
+  
+  
+  
+  
+  
+  `
   var html = "";
+  debugger;
   for (var i = 0; i < players.length; i++){
-    html +=
+    html += "<tr>"+
             "<td>"+ (i+1) + "</td>"+
             "<td>"+ players[i].name + "</td>"+
-            "<td>"+ players[i].score + "</td>"
+            "<td>"+ players[i].score + "</td>"+
+            "</tr>"
             
 }
-document.getElementById("corpo").innerHTML = html;
+
+document.getElementById("corpo").innerHTML += html;
 }
 
 
