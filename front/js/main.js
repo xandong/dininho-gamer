@@ -55,6 +55,8 @@ function moveDino() {
 }
 
 function jump() {
+  if (position != 20) return;
+  isJumping = true;
   let timeJump = setInterval(() => {
     if (position >= 200) {
       clearInterval(timeJump);
@@ -157,6 +159,9 @@ function insereRank(resultGame) {
       Name: resultGame.Name,
       Score: resultGame.Score,
     })
+    .then((resultGame) => {
+      console.log(resultGame);
+    })
     .catch((error) => {
       alert(error);
     });
@@ -191,7 +196,7 @@ function setTable(players) {
 
 function reset() {
   let nickname = prompt("Qual seu nickname? min 3 - max 16");
-  if (nickname == null || (nickname.length >= 3 && nickname.length <= 16)) {
+  if (nickname != null || (nickname.length >= 3 && nickname.length <= 16)) {
     const resultGame = {
       Name: nickname,
       Score: distance,
@@ -221,7 +226,7 @@ function endGame() {
   dino.src = "front/img/dino.svg";
 }
 
-function keyUp() {
+function keyPress() {
   let code = event.keyCode;
   // let codeStr = String.fromCharCode(code);
   // console.log("Code: " + event.keyCode + "; Tecla: " + codeStr);
@@ -256,5 +261,5 @@ function keyUp() {
 }
 
 getPlayers();
-document.addEventListener("keypress", keyUp, false);
-btnMobile.addEventListener("click", keyUp, false);
+document.addEventListener("keypress", keyPress, false);
+btnMobile.addEventListener("click", keyPress, false);
