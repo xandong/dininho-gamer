@@ -58,10 +58,10 @@ function moveDino() {
 function jump() {
   let timeJump = setInterval(() => {
     if (position >= 200) {
-      isJumping = false;
       clearInterval(timeJump);
       let returnJump = setInterval(() => {
         if (position <= 20) {
+          isJumping = false;
           clearInterval(returnJump);
         } else {
           position -= 10;
@@ -150,39 +150,16 @@ function alterMode() {
   }, 100);
 }
 
-function reset() {
-  let nickname = prompt(
-    "Deixe sua pontuação registrada no ranking! Qual seu nickname? min 3 - max 16"
-  );
-  if (nickname != null) {
-    const resultGame = {
-      Name: nickname,
-      Score: distance,
-    };
-    insereRank(resultGame);
-  }
-  (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
-  title.innerHTML = "Precione enter/espaço para começar!";
-  points.innerHTML = "POINTS";
-  btnMobile.innerHTML = "start";
-  const heart = document.createElement("img");
-  heart.classList.add("heart");
-  heart.src = "img/heart-pixel.png";
-  hearts.appendChild(heart);
-}
-
 function insereRank(resultGame) {
-  alert(resultGame);
   axios
     .post("https://game-api2022.herokuapp.com/api/Game", {
       Name: resultGame.Name,
       Score: resultGame.Score,
     })
-    .then(function (response) {
-      console.log(response);
-      //alert("Informações inseridas")
+    .then(() => {
+      alert("Cheque o ranking e veja se conseguiu uma colocação!");
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
       //se deu algum erro na hora de ir inserir.
     });
@@ -201,8 +178,7 @@ function headerTable() {
       <th></th>
       <th>Nome</th>
       <th>Pontos</th>
-    </tr>
-  `;
+    </tr>`;
 }
 
 function setTable(players) {
@@ -214,6 +190,26 @@ function setTable(players) {
       <td>${players[i].score}</td>
     </tr>`;
   }
+}
+
+function reset() {
+  let nickname = prompt("Qual seu nickname? min 3 - max 16");
+  if (nickname.length >= 3 && nickname.length <= 16) {
+    const resultGame = {
+      Name: nickname,
+      Score: distance,
+    };
+    insereRank(resultGame);
+    getPlayers();
+  }
+  (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
+  title.innerHTML = "Precione enter/espaço para começar!";
+  points.innerHTML = "POINTS";
+  btnMobile.innerHTML = "start";
+  const heart = document.createElement("img");
+  heart.classList.add("heart");
+  heart.src = "img/heart-pixel.png";
+  hearts.appendChild(heart);
 }
 
 function endGame() {
