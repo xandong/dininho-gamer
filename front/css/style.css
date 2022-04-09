@@ -164,9 +164,8 @@ main {
 .cacto {
   width: 80px;
   height: 100px;
-  background: url(../img/cacto0.png);
-  background-position: center;
-  background-size: cover;
+
+  stroke: #2c812c;
 
   position: absolute;
   bottom: 20px;
@@ -175,9 +174,6 @@ main {
   width: 80px;
   height: 80px;
 
-  background: url(../img/dino0.png);
-  background-position: center;
-  background-size: cover;
   filter: drop-shadow(0 0 0.1px black);
 
   position: absolute;

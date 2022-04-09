@@ -44,12 +44,11 @@ function moveDino() {
     } else {
       if (stateGame == true && isEndGame == false) {
         if (leftRigth) {
-          dino.style.background = `url(../img/dino1.png)`;
+          dino.src = "front/img/dino-move1.svg";
         } else {
-          dino.style.background = `url(../img/dino2.png)`;
+          dino.src = "front/img/dino-move2.svg";
         }
         leftRigth = !leftRigth;
-        coverCenter(dino);
       }
     }
   }, 200);
@@ -75,12 +74,9 @@ function jump() {
     }
   }, 20);
 }
-function randomCactus() {
-  let num = parseInt(Math.random() * 12);
-  return num;
-}
+
 function createCactus() {
-  const cacto = document.createElement("div");
+  const cacto = document.createElement("img");
   let cactoPosition = 1200,
     timeRandomCreateCacto = parseInt(Math.random() * 3000);
   timeRandomCreateCacto < 800 ? (timeRandomCreateCacto = 800) : null;
@@ -91,13 +87,18 @@ function createCactus() {
     }
   } else {
     cacto.classList.add("cacto");
-    cacto.style.background = `url(../img/cacto${randomCactus()}.png)`;
+    cacto.src = `front/img/cacto${randomCactus()}.svg`;
     cacto.style.left = cactoPosition + "px";
-    coverCenter(cacto);
     cactus.appendChild(cacto);
     moveCacto(cacto, cactoPosition);
     setTimeout(createCactus, timeRandomCreateCacto);
   }
+}
+
+function randomCactus() {
+  let num = parseInt(Math.random() * 9);
+  console.log(num);
+  return num;
 }
 
 function moveCacto(cacto, cactoPosition) {
@@ -156,12 +157,8 @@ function insereRank(resultGame) {
       Name: resultGame.Name,
       Score: resultGame.Score,
     })
-    .then(() => {
-      alert("Cheque o ranking e veja se conseguiu uma colocação!");
-    })
     .catch((error) => {
-      console.log(error);
-      //se deu algum erro na hora de ir inserir.
+      alert(error);
     });
 }
 
@@ -183,7 +180,7 @@ function headerTable() {
 
 function setTable(players) {
   tableRank.innerHTML = headerTable();
-  for (var i = 0; i < players.length; i++) {
+  for (let i = 0; i < players.length; i++) {
     tableRank.innerHTML += `<tr>
       <td>${i + 1}</td>
       <td>${players[i].name}</td>
@@ -194,7 +191,7 @@ function setTable(players) {
 
 function reset() {
   let nickname = prompt("Qual seu nickname? min 3 - max 16");
-  if (nickname.length >= 3 && nickname.length <= 16) {
+  if (nickname == null || (nickname.length >= 3 && nickname.length <= 16)) {
     const resultGame = {
       Name: nickname,
       Score: distance,
@@ -208,7 +205,7 @@ function reset() {
   btnMobile.innerHTML = "start";
   const heart = document.createElement("img");
   heart.classList.add("heart");
-  heart.src = "img/heart-pixel.png";
+  heart.src = "front/img/heart-pixel.png";
   hearts.appendChild(heart);
 }
 
@@ -221,8 +218,7 @@ function endGame() {
   bottom.style.animationDuration = "0s";
   title.innerHTML = "Precione enter/espaço para resetar!";
   btnMobile.innerHTML = "reset";
-  dino.style.background = "url(../img/dino0.png)";
-  coverCenter(dino);
+  dino.src = "front/img/dino.svg";
 }
 
 function keyUp() {
@@ -241,6 +237,11 @@ function keyUp() {
     btnMobile.innerHTML = "jump";
   } else {
     if (code === 32 || code === 13 || event.target.id == "btn-mobile") {
+      // isEndGame
+      //   ? reset()
+      //   : () => {(position == 20 || event.target.id == "btn-mobile")
+      //         return jump()
+      //     };
       if (isEndGame) {
         reset();
       } else {
