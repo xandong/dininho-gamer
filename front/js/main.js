@@ -6,6 +6,7 @@ const dino = document.querySelector("#dino");
 const bottom = document.querySelector("#bottom");
 const hearts = document.querySelector("#life");
 const btnMobile = document.querySelector("#btn-mobile");
+const tableRank = document.getElementById("table-rank");
 
 let stateGame = false,
   isEndGame = false,
@@ -22,9 +23,9 @@ function coverCenter(element) {
 function alterStateGame() {
   alterMode();
   stateGame = !stateGame;
-  console.log("stateGame: " + stateGame);
   return stateGame;
 }
+
 function countPoints() {
   let count = setInterval(() => {
     if (isEndGame) {
@@ -36,7 +37,6 @@ function countPoints() {
   }, 100);
 }
 function moveDino() {
-  console.log("MOVENDO...");
   let leftRigth = false;
   let alterMoveDino = setInterval(() => {
     if (isEndGame) {
@@ -80,7 +80,6 @@ function randomCactus() {
   return num;
 }
 function createCactus() {
-  console.log(`status do jogo no create: ${isEndGame}`);
   const cacto = document.createElement("div");
   let cactoPosition = 1200,
     timeRandomCreateCacto = parseInt(Math.random() * 3000);
@@ -153,15 +152,14 @@ function alterMode() {
 
 function reset() {
   let nickname = prompt(
-    "Deixe sua pontuação registrada no ranking! Qual seu nickname?"
+    "Deixe sua pontuação registrada no ranking! Qual seu nickname? min 3 - max 16"
   );
   if (nickname != null) {
     const resultGame = {
       Name: nickname,
-      Score: distance
-    }
+      Score: distance,
+    };
     insereRank(resultGame);
-    console.log(`${nickname} fez ${distance} pontos!`);
   }
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
   title.innerHTML = "Precione enter/espaço para começar!";
@@ -171,23 +169,51 @@ function reset() {
   heart.classList.add("heart");
   heart.src = "img/heart-pixel.png";
   hearts.appendChild(heart);
-  console.log("Jogo resetado");
 }
 
-function insereRank(resultGame){
+function insereRank(resultGame) {
   alert(resultGame);
-  axios.post('https://localhost:44339/api/Game', {
-    Name: resultGame.Name,
-    Score: resultGame.Score
-  })
-  .then(function (response) {
-    console.log(response);
-    //alert("Informações inseridas")
-  })
-  .catch(function (error) {
-    console.log(error);
-    //se deu algum erro na hora de ir inserir.
+  axios
+    .post("https://game-api2022.herokuapp.com/api/Game", {
+      Name: resultGame.Name,
+      Score: resultGame.Score,
+    })
+    .then(function (response) {
+      console.log(response);
+      //alert("Informações inseridas")
+    })
+    .catch(function (error) {
+      console.log(error);
+      //se deu algum erro na hora de ir inserir.
+    });
+}
+
+function getPlayers() {
+  axios.get("https://game-api2022.herokuapp.com/api/Game").then((response) => {
+    const players = response.data;
+    setTable(players);
   });
+}
+
+function headerTable() {
+  return `
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Pontos</th>
+    </tr>
+  `;
+}
+
+function setTable(players) {
+  tableRank.innerHTML = headerTable();
+  for (var i = 0; i < players.length; i++) {
+    tableRank.innerHTML += `<tr>
+      <td>${i + 1}</td>
+      <td>${players[i].name}</td>
+      <td>${players[i].score}</td>
+    </tr>`;
+  }
 }
 
 function endGame() {
@@ -202,17 +228,17 @@ function endGame() {
   dino.style.background = "url(../img/dino0.png)";
   coverCenter(dino);
 }
-getPlayers();
+
 function keyUp() {
   let code = event.keyCode;
-  let codeStr = String.fromCharCode(code);
+  // let codeStr = String.fromCharCode(code);
   // console.log("Code: " + event.keyCode + "; Tecla: " + codeStr);
   if (!stateGame) {
     alterStateGame();
     countPoints();
     moveDino();
     createCactus();
-   
+
     title.innerHTML = "RUN DINO, RUN...";
     background.style.animationDuration = "10s";
     bottom.style.animationDuration = "4.8s";
@@ -232,55 +258,6 @@ function keyUp() {
   }
 }
 
-function getPlayers(){
-
-  axios.get('https://localhost:44339/api/Game')
- .then(response => {
-   const players = response.data ;
-   console.log(players);
-   setUpTable(players)
- }) 
-}
-
-//monta a tabela dinamicamente
-function setUpTable(players){
-  var container = document.getElementById("container");
-  
-  container.innerHTML = `
-  <table>
-  <thead>
-      <tr>
-  <th></th>
-  <th>Nome</th>
-  <th>Pontos</th>
-  </tr>
-    </thead>
-  <tbody id="corpo">
-  
-  </tbody>
-  </table>
-  
-  
-  
-  
-  
-  
-  `
-  var html = "";
-  debugger;
-  for (var i = 0; i < players.length; i++){
-    html += "<tr>"+
-            "<td>"+ (i+1) + "</td>"+
-            "<td>"+ players[i].name + "</td>"+
-            "<td>"+ players[i].score + "</td>"+
-            "</tr>"
-            
-}
-
-document.getElementById("corpo").innerHTML += html;
-}
-
-
-
+getPlayers();
 document.addEventListener("keypress", keyUp, false);
 btnMobile.addEventListener("click", keyUp, false);
