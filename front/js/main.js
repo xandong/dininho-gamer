@@ -201,19 +201,18 @@ function clickBtnNickname() {
   nickname = inputNickname.value;
   btnNickname.innerHTML = "Alterar";
 
-  if (nickname == "" || nickname.length < 3 || nickname.length > 10) {
-    console.log("IF");
+  if (nickname == "" || nickname.length < 3 || nickname.length > 12) {
+    nickname = "";
     inputNickname.style.borderColor = "tomato";
     btnNickname.style.background = "tomato";
+    inputNickname.innerHTML = nickname;
     return false;
   } else {
-    console.log("ELSE");
-    inputNickname.style.borderColor = "yellowgreen";
     btnNickname.style.background = "yellowgreen";
+    inputNickname.style.borderColor = "yellowgreen";
     return true;
   }
 }
-btnNickname.addEventListener("click", clickBtnNickname, false);
 
 function reset() {
   // let nickname = prompt("Qual seu nickname? min 3 - max 16");
@@ -225,7 +224,6 @@ function reset() {
     insereRank(resultGame);
     getPlayers();
   }
-  console.log(nickname);
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
   title.innerHTML = "Precione ENTER para começar!";
   points.innerHTML = "POINTS";
@@ -243,7 +241,7 @@ function endGame() {
   isEndGame = true;
   background.style.animationDuration = "0s";
   bottom.style.animationDuration = "0s";
-  title.innerHTML = "Precione enter/espaço para resetar!";
+  title.innerHTML = "Precione ENTER para resetar!";
   btnMobile.innerHTML = "reset";
   dino.src = "front/img/dino.svg";
 }
@@ -285,3 +283,4 @@ function keyPress() {
 getPlayers();
 document.addEventListener("keypress", keyPress, false);
 btnMobile.addEventListener("click", keyPress, false);
+btnNickname.addEventListener("click", clickBtnNickname, false);

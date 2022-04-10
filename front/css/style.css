@@ -188,7 +188,7 @@ main {
   padding: 8px 16px;
   width: fit-content;
   height: fit-content;
-  flex-direction: row;
+  flex-direction: column;
   align-items: baseline;
   justify-content: center;
   gap: 16px;
@@ -197,10 +197,21 @@ main {
   border: 4px solid #dde;
   border-radius: 16px;
 }
-#rules div {
+#rules ul {
+  margin-left: 16px;
+}
+#rules ul li {
+  padding: 4px 16px;
+}
+#rules > ul > li > div {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 24px;
+}
+#rules > ul > li > div > div {
+  display: flex;
+  flex-direction: row;
 }
 #rules code {
   margin: 0 4px;
@@ -224,14 +235,10 @@ main {
 }
 #rank table {
   text-align: left;
-  /*display: flex;*/
 }
 #rank th,
 #rank td {
   padding: 4px 16px;
-}
-#rank tr {
-  margin-bottom: 24px;
 }
 
 footer {
@@ -248,11 +255,7 @@ footer a strong {
 @media (max-width: 768px) {
   main #game:nth-child(2) {
     width: 100vw;
-    grid-column: 1;
-    grid-row: 1 / 2;
   }
-  /* #game {
-  } */
 }
 @keyframes sliderBackground {
   from {
