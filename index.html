@@ -11,12 +11,12 @@
     <title>Jogo do Dinossauro - Dino Game</title>
     <link rel="stylesheet" href="front/css/style.css" />
     <link rel="stylesheet" href="front/css/mode.css" />
-    <link rel="shortcut icon" href="front/img/dino0.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="front/img/dino.ico" type="image/x-icon" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <header class="flex-center">
-      <h1 id="title">Precione qualquer tecla para começar</h1>
+      <h1 id="title">Precione ENTER para começar</h1>
       <div id="theme"><div id="state-theme"></div></div>
     </header>
     <main>
@@ -27,6 +27,10 @@
             <img src="front/img/heart-pixel.png" alt="heart" class="heart" />
           </div>
           <div id="points">POINTS</div>
+          <div id="container-nickname">
+            <input id="nickname" type="text" placeholder="nickname" />
+            <button id="btn-nickname">OK</button>
+          </div>
         </div>
         <div id="cactus"></div>
         <img id="dino" src="front/img/dino.svg" alt="dino" />

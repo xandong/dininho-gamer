@@ -7,13 +7,16 @@ const bottom = document.querySelector("#bottom");
 const hearts = document.querySelector("#life");
 const btnMobile = document.querySelector("#btn-mobile");
 const tableRank = document.getElementById("table-rank");
+const inputNickname = document.querySelector("#nickname");
+const btnNickname = document.querySelector("#btn-nickname");
 
 let stateGame = false,
   isEndGame = false,
   mode = false,
   position = 20,
   distance = 0,
-  isJumping = false;
+  isJumping = false,
+  nickname = "";
 
 function coverCenter(element) {
   element.style.backgroundSize = "cover";
@@ -159,8 +162,8 @@ function insereRank(resultGame) {
       Name: resultGame.Name,
       Score: resultGame.Score,
     })
-    .then((resultGame) => {
-      console.log(resultGame);
+    .then(() => {
+      alert("Pontuação registrada com sucesso!");
     })
     .catch((error) => {
       alert(error);
@@ -194,9 +197,27 @@ function setTable(players) {
   }
 }
 
+function clickBtnNickname() {
+  nickname = inputNickname.value;
+  btnNickname.innerHTML = "Alterar";
+
+  if (nickname == "" || nickname.length < 3 || nickname.length > 10) {
+    console.log("IF");
+    inputNickname.style.borderColor = "tomato";
+    btnNickname.style.background = "tomato";
+    return false;
+  } else {
+    console.log("ELSE");
+    inputNickname.style.borderColor = "yellowgreen";
+    btnNickname.style.background = "yellowgreen";
+    return true;
+  }
+}
+btnNickname.addEventListener("click", clickBtnNickname, false);
+
 function reset() {
-  let nickname = prompt("Qual seu nickname? min 3 - max 16");
-  if (nickname != null || (nickname.length >= 3 && nickname.length <= 16)) {
+  // let nickname = prompt("Qual seu nickname? min 3 - max 16");
+  if (clickBtnNickname()) {
     const resultGame = {
       Name: nickname,
       Score: distance,
@@ -204,8 +225,9 @@ function reset() {
     insereRank(resultGame);
     getPlayers();
   }
+  console.log(nickname);
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
-  title.innerHTML = "Precione enter/espaço para começar!";
+  title.innerHTML = "Precione ENTER para começar!";
   points.innerHTML = "POINTS";
   btnMobile.innerHTML = "start";
   const heart = document.createElement("img");
@@ -230,33 +252,33 @@ function keyPress() {
   let code = event.keyCode;
   // let codeStr = String.fromCharCode(code);
   // console.log("Code: " + event.keyCode + "; Tecla: " + codeStr);
-  if (!stateGame) {
-    alterStateGame();
-    countPoints();
-    moveDino();
-    createCactus();
+  if (code === 32 || code === 13 || event.target.id == "btn-mobile") {
+    if (!stateGame) {
+      alterStateGame();
+      countPoints();
+      moveDino();
+      createCactus();
 
-    title.innerHTML = "RUN DINO, RUN...";
-    background.style.animationDuration = "10s";
-    bottom.style.animationDuration = "4.8s";
-    btnMobile.innerHTML = "jump";
-  } else {
-    if (code === 32 || code === 13 || event.target.id == "btn-mobile") {
-      // isEndGame
-      //   ? reset()
-      //   : () => {(position == 20 || event.target.id == "btn-mobile")
-      //         return jump()
-      //     };
-      if (isEndGame) {
-        reset();
+      title.innerHTML = "RUN ";
+      if (nickname != "") {
+        title.innerHTML += `${nickname}`;
       } else {
-        if (position == 20 || event.target.id == "btn-mobile") {
-          jump();
-        }
+        title.innerHTML += "DINO";
       }
-    } else if (code == 77 || code == 109) {
-      endGame();
+      title.innerHTML += ", RUN...";
+      background.style.animationDuration = "10s";
+      bottom.style.animationDuration = "4.8s";
+      btnMobile.innerHTML = "jump";
     }
+    if (isEndGame) {
+      reset();
+    } else {
+      if (position == 20 || event.target.id == "btn-mobile") {
+        jump();
+      }
+    }
+  } else if (code == 77 || code == 109) {
+    endGame();
   }
 }
 

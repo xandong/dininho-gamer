@@ -57,72 +57,21 @@ main {
 
   flex-direction: column;
 }
-#container {
-  max-width: 1200px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 16px;
-}
-#rules {
-  padding: 8px;
-  width: fit-content;
-  height: fit-content;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  gap: 16px;
-  background: #eee;
-  color: #3a026a;
-  border: 4px solid #dde;
-  border-radius: 16px;
-}
-#rules div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-#rules code {
-  margin: 0 4px;
-  padding: 4px 8px;
-  text-transform: uppercase;
-  background: #ddd;
-  border-radius: 8px;
-}
-#rank {
-  min-width: 100px;
-  width: fit-content;
-  min-height: 100px;
-  height: fit-content;
-  flex-direction: column;
 
-  padding: 8px;
-  background: #eee;
-  color: #3a026a;
-  border: 4px solid #dde;
-  border-radius: 16px;
-}
-#rank table {
-  padding: 24px;
-  text-align: left;
-  /*display: flex;*/
-}
-#rank th,
-#rank td {
-  padding: 4px 16px;
-}
-#rank tr {
-  margin-bottom: 24px;
-}
 #info {
   width: 100%;
   padding: 24px;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: absolute;
+  top: 0;
+
   color: tomato;
+}
+#life {
+  width: 100px;
 }
 .heart {
   width: 26px;
@@ -133,6 +82,26 @@ main {
   font-weight: 600;
   text-shadow: 1.5px 1.5px white;
 }
+#nickname {
+  width: 100px;
+  padding: 4px;
+  border-radius: 8px 0 0 8px;
+  border: 2px solid whitesmoke;
+  margin-right: -4px;
+}
+#btn-nickname {
+  padding: 6px 8px;
+  border-radius: 0 8px 8px 0;
+  border: none;
+  cursor: pointer;
+  background: yellowgreen;
+  color: whitesmoke;
+  font-weight: 600;
+}
+#btn-nickname:hover {
+  background: rgb(139, 185, 45);
+}
+
 #game {
   max-width: 100%;
   width: 1200px;
@@ -206,6 +175,65 @@ main {
   bottom: 0;
 }
 
+#container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+#rules {
+  padding: 8px 16px;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  background: #eee;
+  color: #3a026a;
+  border: 4px solid #dde;
+  border-radius: 16px;
+}
+#rules div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#rules code {
+  margin: 0 4px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  background: #ddd;
+  border-radius: 8px;
+}
+#rank {
+  min-width: 100px;
+  width: fit-content;
+  min-height: 100px;
+  height: fit-content;
+  flex-direction: column;
+
+  padding: 8px;
+  background: #eee;
+  color: #3a026a;
+  border: 4px solid #dde;
+  border-radius: 16px;
+}
+#rank table {
+  text-align: left;
+  /*display: flex;*/
+}
+#rank th,
+#rank td {
+  padding: 4px 16px;
+}
+#rank tr {
+  margin-bottom: 24px;
+}
+
 footer {
   width: 100vw;
   padding: 24px;
@@ -218,8 +246,8 @@ footer {
     grid-column: 1;
     grid-row: 1 / 2;
   }
-  #game {
-  }
+  /* #game {
+  } */
 }
 @keyframes sliderBackground {
   from {
