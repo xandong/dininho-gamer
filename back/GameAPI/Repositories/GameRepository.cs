@@ -19,7 +19,6 @@ namespace GameAPI.Repositories
             var resultGames = await _firebase
                 .Child("ResultGame")
                 .OrderByKey()
-                .LimitToFirst(10)
                 .OnceAsync<ResultGame>();
 
             foreach (var item in resultGames)
@@ -27,7 +26,7 @@ namespace GameAPI.Repositories
                 lResultGamesCollection.Add(item.Object);
             }
 
-            return lResultGamesCollection.OrderByDescending(x => x.Score);
+            return lResultGamesCollection.OrderByDescending(x => x.Score).Take(10);
         }
 
         public async Task<ResultGame> Create(ResultGame prResultGame)
