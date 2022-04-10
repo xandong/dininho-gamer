@@ -239,6 +239,11 @@ footer {
   padding: 24px;
   font-weight: 600;
 }
+footer a strong {
+  background: whitesmoke;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
 
 @media (max-width: 768px) {
   main #game:nth-child(2) {
