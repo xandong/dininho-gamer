@@ -116,14 +116,14 @@ function moveCacto(cacto, cactoPosition) {
     if (cactoPosition < -100) {
       clearInterval(cactoInverval);
       cactus.removeChild(cacto);
-    } else if (
-      cactoPosition >= 100 &&
-      cactoPosition <= 160 &&
-      position <= 100
-    ) {
+    } else if (cactoPosition >= 90 && cactoPosition <= 160 && position <= 100) {
       clearInterval(cactoInverval);
       if (cactus.hasChildNodes()) {
-        cactus.removeChild(cacto);
+        try {
+          cactus.removeChild(cacto);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         endGame();
       }
@@ -186,7 +186,7 @@ function headerTable() {
   return `
     <tr>
       <th></th>
-      <th>Nome</th>
+      <th>Nickname</th>
       <th>Pontos</th>
     </tr>`;
 }
