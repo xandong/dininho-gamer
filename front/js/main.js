@@ -116,7 +116,11 @@ function moveCacto(cacto, cactoPosition) {
     if (cactoPosition < -100) {
       clearInterval(cactoInverval);
       cactus.removeChild(cacto);
-    } else if (cactoPosition >= 90 && cactoPosition <= 150 && position <= 100) {
+    } else if (
+      cactoPosition >= 100 &&
+      cactoPosition <= 160 &&
+      position <= 100
+    ) {
       clearInterval(cactoInverval);
       if (cactus.hasChildNodes()) {
         cactus.removeChild(cacto);
@@ -163,7 +167,8 @@ function insereRank(resultGame) {
       Score: resultGame.Score,
     })
     .then(() => {
-      alert("Pontuação registrada com sucesso!");
+      getPlayers();
+      alert("Atualize a página!");
     })
     .catch((error) => {
       alert(error);
@@ -222,7 +227,6 @@ function reset() {
       Score: distance,
     };
     insereRank(resultGame);
-    getPlayers();
   }
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
   title.innerHTML = "Precione ENTER para começar!";
