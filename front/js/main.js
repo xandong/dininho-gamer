@@ -23,12 +23,6 @@ function coverCenter(element) {
   element.style.backgroundPosition = "center";
 }
 
-function alterStateGame() {
-  alterMode();
-  stateGame = !stateGame;
-  return stateGame;
-}
-
 function countPoints() {
   let count = setInterval(() => {
     if (isEndGame) {
@@ -77,14 +71,14 @@ function jump() {
       position += 10;
       dino.style.bottom = position + "px";
     }
-  }, 20);
+  }, 30);
 }
 
 function createCactus() {
   const cacto = document.createElement("img");
   let cactoPosition = 1200,
-    timeRandomCreateCacto = parseInt(Math.random() * 3000);
-  timeRandomCreateCacto < 800 ? (timeRandomCreateCacto = 800) : null;
+    timeRandomCreateCacto = parseInt(Math.random() * 6000);
+  timeRandomCreateCacto < 1600 ? (timeRandomCreateCacto = 1600) : null;
   if (isEndGame) {
     while (cactus.hasChildNodes()) {
       cactus.removeChild(cacto);
@@ -116,7 +110,7 @@ function moveCacto(cacto, cactoPosition) {
     if (cactoPosition < -100) {
       clearInterval(cactoInverval);
       cactus.removeChild(cacto);
-    } else if (cactoPosition >= 90 && cactoPosition <= 160 && position <= 100) {
+    } else if (cactoPosition >= 80 && cactoPosition <= 160 && position <= 100) {
       clearInterval(cactoInverval);
       if (cactus.hasChildNodes()) {
         try {
@@ -131,7 +125,7 @@ function moveCacto(cacto, cactoPosition) {
         removeHeart();
       }, 100);
     }
-  }, 10);
+  }, 12);
 }
 
 function removeHeart() {
@@ -142,23 +136,23 @@ function removeHeart() {
   }
 }
 
-function alterMode() {
-  let modeBg = setInterval(() => {
-    if (isEndGame) {
-      clearInterval(modeBg);
-    } else {
-      if (distance % 500 == 0 && distance != 0) {
-        if (mode) {
-          background.style.background = "url(../img/bg1-night.png)";
-        } else {
-          background.style.background = "url(../img/bg1.png)";
-        }
-        coverCenter(background);
-        mode = !mode;
-      }
-    }
-  }, 100);
-}
+// function alterMode() {
+//   let modeBg = setInterval(() => {
+//     if (isEndGame) {
+//       clearInterval(modeBg);
+//     } else {
+//       if (distance % 500 == 0 && distance != 0) {
+//         if (mode) {
+//           background.style.background = "url(../img/bg1-night.png)";
+//         } else {
+//           background.style.background = "url(../img/bg1.png)";
+//         }
+//         coverCenter(background);
+//         mode = !mode;
+//       }
+//     }
+//   }, 100);
+// }
 
 function insereRank(resultGame) {
   axios
@@ -168,7 +162,7 @@ function insereRank(resultGame) {
     })
     .then(() => {
       getPlayers();
-      alert("Atualize a página!");
+      alert("Pontuação registrada com sucesso!");
     })
     .catch((error) => {
       alert(error);
@@ -220,14 +214,7 @@ function clickBtnNickname() {
 }
 
 function reset() {
-  // let nickname = prompt("Qual seu nickname? min 3 - max 16");
-  if (clickBtnNickname()) {
-    const resultGame = {
-      Name: nickname,
-      Score: distance,
-    };
-    insereRank(resultGame);
-  }
+  let score = distance;
   (stateGame = false), (isEndGame = false), (position = 20), (distance = 0);
   title.innerHTML = "Precione ENTER para começar!";
   points.innerHTML = "POINTS";
@@ -236,6 +223,14 @@ function reset() {
   heart.classList.add("heart");
   heart.src = "front/img/heart-pixel.png";
   hearts.appendChild(heart);
+
+  if (clickBtnNickname()) {
+    const resultGame = {
+      Name: nickname,
+      Score: score,
+    };
+    insereRank(resultGame);
+  }
 }
 
 function endGame() {
@@ -256,7 +251,8 @@ function keyPress() {
   // console.log("Code: " + event.keyCode + "; Tecla: " + codeStr);
   if (code === 32 || code === 13 || event.target.id == "btn-mobile") {
     if (!stateGame) {
-      alterStateGame();
+      stateGame = true;
+      // alterMode();
       countPoints();
       moveDino();
       createCactus();
