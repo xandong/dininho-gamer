@@ -18,6 +18,7 @@ namespace GameAPI.Controllers
         {
             _gameRepository = gameRepository;
         }
+   
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ResultGame>>> GetResultGames()
         {

@@ -46,6 +46,10 @@
             "FirebaseDatabase.net": {
               "target": "Package",
               "version": "[4.0.7, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [

@@ -35,7 +35,6 @@ C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreap
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\LiteDB.dll
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\System.Reactive.dll
-C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.csprojAssemblyReference.cache
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.AssemblyInfoInputs.cache
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.AssemblyInfo.cs
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.csproj.CoreCompileInputs.cache
@@ -48,3 +47,10 @@ C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreap
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.dll
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.pdb
 C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.genruntimeconfig.cache
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.csprojAssemblyReference.cache
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\GameAPI.xml
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\luanc\Documents\Projetos\dininho-gamer\back\GameAPI\obj\Debug\netcoreapp3.1\GameAPI.MvcApplicationPartsAssemblyInfo.cs
