@@ -176,7 +176,7 @@ function clickBtnNickname() {
   nickname = inputNickname.value;
   btnNickname.innerHTML = "Alterar";
 
-  if (nickname === "" || nickname.length < 3 || nickname.length > 12) {
+  if (nickname === "" || nickname.length < 3 || nickname.length > 20) {
     nickname = "";
     inputNickname.style.borderColor = "tomato";
     btnNickname.style.background = "tomato";
@@ -228,7 +228,7 @@ function keyPress() {
   let code = event.keyCode;
   console.log(code);
 
-  if (code === 13 || code === 32 || event.target.id === "btn-mobile") {
+  if (code === 13 || event.target.id === "btn-mobile") {
     if (!stateGame && !isEndGame) {
       stateGame = true;
       countPoints();
