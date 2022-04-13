@@ -24,7 +24,6 @@ function coverCenter(element) {
 }
 
 function countPoints() {
-  // alterMode();
   let count = setInterval(() => {
     if (isEndGame) {
       clearInterval(count);
@@ -76,6 +75,7 @@ function jump() {
 }
 
 function createCactus() {
+  console.log("cacto criado");
   isCreatingCactus = true;
   const cacto = document.createElement("img");
   let cactoPosition = 1200,
@@ -84,7 +84,6 @@ function createCactus() {
   if (isEndGame) {
     while (cactus.hasChildNodes()) {
       cactus.removeChild(cacto);
-      return;
     }
   } else {
     cacto.classList.add("cacto");
@@ -92,6 +91,7 @@ function createCactus() {
     cacto.style.left = cactoPosition + "px";
     cactus.appendChild(cacto);
     moveCacto(cacto, cactoPosition);
+    console.log("Dentro do createCactus, antes do setTimeOut, cacto criado");
     setTimeout(createCactus, timeRandomCreateCacto);
   }
 }
@@ -112,9 +112,10 @@ function moveCacto(cacto, cactoPosition) {
     if (cactoPosition < -100) {
       clearInterval(cactoInverval);
       cactus.removeChild(cacto);
-    } else if (cactoPosition >= 80 && cactoPosition <= 160 && position <= 100) {
+    } else if (cactoPosition >= 70 && cactoPosition <= 150 && position <= 100) {
       clearInterval(cactoInverval);
       if (cactus.hasChildNodes()) {
+        console.log(cactus, cacto);
         cactus.removeChild(cacto);
       } else {
         endGame();
@@ -207,6 +208,7 @@ function reset() {
   title.innerHTML = "Precione ENTER para começar!";
   points.innerHTML = "POINTS";
   btnMobile.innerHTML = "start";
+
   const heart = document.createElement("img");
   heart.classList.add("heart");
   heart.src = "front/img/heart-pixel.png";
@@ -234,11 +236,12 @@ function keyPress() {
       stateGame = true;
       countPoints();
       moveDino();
+      console.log("No press, fora do !isCreatingCactus criado");
       if (!isCreatingCactus) {
         createCactus();
       }
       background.style.animationDuration = "10s";
-      bottom.style.animationDuration = "4.8s";
+      bottom.style.animationDuration = "5.9s";
       btnMobile.innerHTML = "jump";
 
       nickname === ""
