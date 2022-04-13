@@ -62,16 +62,16 @@ function jump() {
           isJumping = false;
           clearInterval(returnJump);
         } else {
-          position -= 10;
+          position -= 20;
           dino.style.bottom = position + "px";
         }
-      }, 20);
+      }, 40);
     } else {
       isJumping = true;
-      position += 10;
+      position += 20;
       dino.style.bottom = position + "px";
     }
-  }, 20);
+  }, 40);
 }
 
 function createCactus() {
@@ -104,7 +104,7 @@ function moveCacto(cacto, cactoPosition) {
     clearInterval(cactoInverval);
   }
   let cactoInverval = setInterval(() => {
-    cactoPosition -= 5;
+    cactoPosition -= 10;
     cacto.style.left = cactoPosition + "px";
     if (cactoPosition < -100) {
       clearInterval(cactoInverval);
@@ -120,7 +120,7 @@ function moveCacto(cacto, cactoPosition) {
         removeHeart();
       }, 100);
     }
-  }, 12);
+  }, 24);
 }
 
 function removeHeart() {
