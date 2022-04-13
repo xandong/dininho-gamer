@@ -75,7 +75,6 @@ function jump() {
 }
 
 function createCactus() {
-  console.log("cacto criado");
   isCreatingCactus = true;
   const cacto = document.createElement("img");
   let cactoPosition = 1200,
@@ -91,14 +90,12 @@ function createCactus() {
     cacto.style.left = cactoPosition + "px";
     cactus.appendChild(cacto);
     moveCacto(cacto, cactoPosition);
-    console.log("Dentro do createCactus, antes do setTimeOut, cacto criado");
     setTimeout(createCactus, timeRandomCreateCacto);
   }
 }
 
 function randomCactus() {
   let num = parseInt(Math.random() * 9);
-  console.log(num);
   return num;
 }
 
@@ -115,7 +112,6 @@ function moveCacto(cacto, cactoPosition) {
     } else if (cactoPosition >= 70 && cactoPosition <= 150 && position <= 100) {
       clearInterval(cactoInverval);
       if (cactus.hasChildNodes()) {
-        console.log(cactus, cacto);
         cactus.removeChild(cacto);
       } else {
         endGame();
@@ -195,7 +191,7 @@ function reset() {
   if (nickname != "") {
     const resultGame = {
       Name: nickname,
-      Score: score,
+      Score: distance,
     };
     insereRank(resultGame);
   }
@@ -236,7 +232,6 @@ function keyPress() {
       stateGame = true;
       countPoints();
       moveDino();
-      console.log("No press, fora do !isCreatingCactus criado");
       if (!isCreatingCactus) {
         createCactus();
       }
