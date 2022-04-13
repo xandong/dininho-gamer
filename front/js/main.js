@@ -226,8 +226,9 @@ function endGame() {
 
 function keyPress() {
   let code = event.keyCode;
+  console.log(code);
 
-  if (code === 13 || event.target.id === "btn-mobile") {
+  if (code === 13 || code === 32 || event.target.id === "btn-mobile") {
     if (!stateGame && !isEndGame) {
       stateGame = true;
       countPoints();
@@ -247,7 +248,7 @@ function keyPress() {
     } else {
       jump();
     }
-  }
+  } else return;
 }
 
 getPlayers();
